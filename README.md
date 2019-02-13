@@ -10,4 +10,5 @@ Homomorphic encryption is a form of encryption that allows computation on cipher
 
 ## Reference:
 https://asecuritysite.com/encryption/pal_ex
+
 https://en.wikipedia.org/wiki/Homomorphic_encryption
