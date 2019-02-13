@@ -8,6 +8,6 @@ Homomorphic encryption is a form of encryption that allows computation on cipher
 ## To build the code. 
 ```mvn clean package```
 
-Reference:
+## Reference:
 https://asecuritysite.com/encryption/pal_ex
 https://en.wikipedia.org/wiki/Homomorphic_encryption
