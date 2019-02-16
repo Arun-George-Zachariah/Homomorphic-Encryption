@@ -16,76 +16,76 @@ public class CommonUtil {
         return instance;
     }
 
-    public static long floorMod(long x, long y) {
-        long r = x - floorDiv(x, y) * y;
+    public static BigInteger floorMod(BigInteger x, BigInteger y) {
+        BigInteger r = x.subtract(floorDiv(x, y).multiply(y));
         return r;
     }
 
-    public static long floorDiv(long x, long y) {
-        long r = x / y;
-        if ((x ^ y) < 0 && (r * y != x)) {
-            r--;
+    public static BigInteger floorDiv(BigInteger x, BigInteger y) {
+        BigInteger r = x.divide(y);
+        if ((x.xor(y)).compareTo(BigInteger.ZERO) < 0 && (r.multiply(y) != x)) {
+            r.subtract(BigInteger.ONE);
         }
         return r;
     }
 
-    public static int gcd(int a, int b) {
-        while(b > 0) {
-            int temp = b;
-            b = a % b;
+    public static BigInteger gcd(BigInteger a, BigInteger b) {
+        while(b.compareTo(BigInteger.ZERO) > 0) {
+            BigInteger temp = b;
+            b = a.mod(b);
             a = temp;
         }
         return a;
     }
 
-    public static int lcm(int a, int b) {
-        int lcm = (a*b)/gcd(a,b);
+    public static BigInteger lcm(BigInteger a, BigInteger b) {
+        BigInteger lcm = (a.multiply(b)).divide(gcd(a,b));
         return lcm;
     }
 
-    public static int[] extended_euclidean_algorithm(int a, int b) {
+    public static BigInteger[] extended_euclidean_algorithm(BigInteger a, BigInteger b) {
         System.out.println("a :: "  + a + " :: b :: " + b);
-        int s =0;
-        int old_s = 1;
-        int t = 1;
-        int old_t = 0;
-        int r = b;
-        int old_r = a;
+        BigInteger s = BigInteger.ZERO;
+        BigInteger old_s = BigInteger.ONE;
+        BigInteger t = BigInteger.ONE;
+        BigInteger old_t = BigInteger.ZERO;
+        BigInteger r = b;
+        BigInteger old_r = a;
 
-        while(r != 0) {
-            int quotient = old_r/r;
-            int temp1 = old_r;
+        while(!r.equals(BigInteger.ZERO)) {
+            BigInteger quotient = old_r.divide(r);
+            BigInteger temp1 = old_r;
             old_r = r;
-            r = temp1 - quotient * r;
+            r = temp1.subtract(quotient.multiply(r));
 
-            int temp2 = old_s;
+            BigInteger temp2 = old_s;
             old_s = s;
-            s = temp2 - quotient * s;
+            s = temp2.subtract(quotient.multiply(s));
 
-            int temp3 = old_t;
+            BigInteger temp3 = old_t;
             old_t = t;
-            t =  temp3 - quotient * t;
+            t =  temp3.subtract(quotient.multiply(t));
         }
-        int[] retArr = {old_r, old_s, old_t};
+        BigInteger[] retArr = {old_r, old_s, old_t};
         return retArr;
     }
 
-    public static int inverse_of(int n, int p) {
-        int[] distArr = extended_euclidean_algorithm(n, p);
+    public static BigInteger inverse_of(BigInteger n, BigInteger p) {
+        BigInteger[] distArr = extended_euclidean_algorithm(n, p);
 
-        int gcd = distArr[0];
-        int x = distArr[1];
-        int y = distArr[2];
+        BigInteger gcd = distArr[0];
+        BigInteger x = distArr[1];
+        BigInteger y = distArr[2];
 
-        if (gcd != 1) {
+        if (!gcd.equals(BigInteger.ONE)) {
             System.out.println("Cannot be solved!!!");
-            return -1;
+            return BigInteger.ZERO.subtract(BigInteger.ONE);
         } else {
-            return (int) floorMod((long)x,(long)p);
+            return floorMod(x, p);
         }
     }
 
-    public static int pow(int a, int b, int c) {
-        return BigInteger.valueOf(a).pow(b).mod(BigInteger.valueOf(c)).intValue();
+    public static BigInteger pow(BigInteger a, BigInteger b, BigInteger c) {
+        return a.modPow(b,c);
     }
 }

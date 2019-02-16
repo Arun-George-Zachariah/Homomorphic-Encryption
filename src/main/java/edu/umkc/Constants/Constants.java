@@ -1,8 +1,10 @@
 package edu.umkc.Constants;
 
+import java.math.BigInteger;
+
 public class Constants {
-    public static final int P = 17;
-    public static final int Q = 19;
-    public static final int G = 39;
-    public static final int R = 105;
+    public static final BigInteger P = BigInteger.valueOf(17);
+    public static final BigInteger Q = BigInteger.valueOf(19);
+    public static final BigInteger G = BigInteger.valueOf(39);
+    public static final BigInteger R = BigInteger.valueOf(105);
 }
