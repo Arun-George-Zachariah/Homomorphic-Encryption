@@ -5,10 +5,10 @@ Homomorphic encryption is a form of encryption that allows computation on cipher
 ## Algorithm
 ![](Algorithm.png)
 
-## To build the code. 
+## To build the code
 ```mvn clean package```
 
-## Reference:
+## References
 https://asecuritysite.com/encryption/pal_ex
 
 https://en.wikipedia.org/wiki/Homomorphic_encryption
